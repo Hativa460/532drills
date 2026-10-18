@@ -1,0 +1,187 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.instructions-screen{
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/src/assets/media/brown-bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.screen-header {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  left: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* סמלי היחידות בראש העמוד */
+.page-logos {
+  position: absolute;
+  top: 2.2%;
+  left: 7%;
+  right: 7%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  z-index: 2;
+}
+
+.page-logos img {
+  width: 59px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: 13%;
+  right: 10%;
+  width: 80%;
+  height: 60%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 16px 12px 14px;
+  border-radius: 7px;
+  background: #58672b;
+  color: #fff;
+
+  box-shadow: 7px 7px 4px #0003;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -48px;
+  left: 42%;
+
+  width: 0;
+  height: 0;
+  border-top: 52px solid #58672b;
+  border-left: 0 solid transparent;
+  border-right: 42px solid transparent;
+
+  filter: drop-shadow(1px 2px 1px #0002);
+}
+
+.instructions-text {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(20px, 3.5vw, 14px);
+  font-family: "bold-txt";
+  line-height: 1.45;
+}
+
+.instructions-text p {
+  margin: 10px  28px;
+}
+
+.instructions-text p:first-child {
+  margin-top: 30px;
+  margin-bottom: 28px;
+}
+
+.instructions-text .ready-question {
+  margin-top: -2px;
+  margin-bottom: 0;
+}
+
+.lego-ready-button {
+  position: relative;
+  bottom: 40px;
+  z-index: 2;
+  margin-top: auto;
+
+  min-width: 166px;
+  min-height: 49px;
+  padding: 5px 10px;
+
+  border: 2px solid #604600;
+  border-radius: 4px;
+  background: linear-gradient(#ffeb55, #f5bd00);
+  color: #302400;
+
+  font-family: "bold-txt";
+  font-size: 23px;
+
+
+  box-shadow:
+    0 3px 0 #9c7100,
+    inset 0 1px 2px #fff9;
+
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.lego-studs {
+  position: absolute;
+  top: -7px;
+  right: 3px;
+  left: 3px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.lego-studs i {
+  width: 11px;
+  height: 6px;
+  border: 1px solid #8c6700;
+  border-radius: 50%;
+  background: #ffdf26;
+}
+
+.lego-button-text {
+  display: block;
+  padding-top: 2px;
+}
+
+.lego-ready-button:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 0 0 #9c7100,
+    inset 0 1px 2px #fff9;
+}
+
+.soldier-image {
+  position: absolute;
+  right: 55%;
+  bottom: 1%;
+  z-index: 3;
+
+  width: 37%;
+  max-height: 27%;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* מסכים נמוכים */
+@media (max-height: 650px) {
+  .speech-bubble {
+    top: 9%;
+    height: 65%;
+  }
+
+  .instructions-text p {
+    margin-bottom: 14px;
+  }
+
+  .soldier-image {
+    max-height: 23%;
+  }
+}
