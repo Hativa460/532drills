@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import './SelectionPage.css';
 
@@ -105,20 +104,6 @@ function SelectionPage() {
   //     </section>
   //   </main>
   // );
-=======
-function SelectionPage() {
-  return (
-    <main className="page-wrapper" dir="rtl">
-      <section className="learning-screen next-screen">
-        <h1>ברוכים הבאים ללומדה</h1>
-
-        <p>
-          כאן יופיע התוכן של המסך הבא.
-        </p>
-      </section>
-    </main>
-  );
->>>>>>> cb99bd4bde7644041e7702f9cd931f3a79d5e255
 }
 
 export default SelectionPage;
