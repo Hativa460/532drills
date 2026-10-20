@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .selection-screen{
   width: 100vw;
   height: 100vh;
@@ -147,3 +148,61 @@
 }
 
 
+=======
+
+.next-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: clamp(100px, 15vh, 140px) 24px 32px;
+
+  text-align: center;
+  direction: rtl;
+}
+
+.next-screen h1 {
+  margin: 0 0 20px;
+
+  font-size: clamp(25px, 7vw, 32px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.next-screen p {
+  max-width: 300px;
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* כפתור חזרה, אם תוסיפי אותו ל-JSX */
+.back-button {
+  margin-top: 32px;
+  padding: 12px 22px;
+
+  border: 1px solid #b8a044;
+  border-radius: 8px;
+
+  background: #f1d34f;
+  color: #171717;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: filter 160ms ease;
+}
+
+.back-button:active {
+  filter: brightness(0.94);
+  transform: scale(0.98);
+}
+
+.back-button:focus-visible {
+  outline: 3px solid #3265a8;
+  outline-offset: 4px;
+}
+>>>>>>> cb99bd4bde7644041e7702f9cd931f3a79d5e255

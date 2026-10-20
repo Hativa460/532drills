@@ -32,7 +32,11 @@ function StartPage({ onStart }) {
 
         <div className="tank-container">
           <img
+<<<<<<< HEAD
             src="/src/assets/media/solider-gunner.png"
+=======
+            src="/src/assets/media/solider-tank-1.png"
+>>>>>>> cb99bd4bde7644041e7702f9cd931f3a79d5e255
             alt="טנק"
             className="hero-tank"
           />
