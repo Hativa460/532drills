@@ -77,14 +77,17 @@
 /* בליטות הלגו העליונות */
 .lego-studs {
   display: none;
-  justify-content: space-around;
-  padding: 0 10px;
+  justify-content: space-between; /* משנה מ-space-around ל-space-between כדי שימתחו מקצה לקצה */
+  align-items: center;
+  padding: 0 8px; 
   position: absolute;
-  top: -7px;         
-  right: 0;
+  top: -7px;          
+  left: 0;       
+  right: 0;       
+  width: 100%;    
+  box-sizing: border-box;
 }
 
-/* חיווי לבליטות: מופיעות אך ורק כאשר הכפתור נבחר (selected) */
 .lego-brick.selected .lego-studs {
   display: flex;
 }
@@ -130,6 +133,37 @@
 .lego-brick.selected .brick-body {
   outline: 3px solid #dfbe03; /* מסגרת מוזהבת מובלטת */
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 6px 10px rgba(0,0,0,0.3);
+}
+
+/* כפתור הלגו */
+.start-button2 {
+  display: block;
+  width: clamp(1px, 35vw, 200px);
+  margin-top: clamp(38px, 7vh, 58px);
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform 160ms ease;
+}
+
+.start-button2 img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.start-button2:active {
+  transform: scale(0.96);
+  transform: translateY(4px);
+}
+
+.start-button2:focus-visible {
+  outline: 3px solid #3265a8;
+  outline-offset: 5px;
+  border-radius: 8px;
 }
 
 /* מיקום דמות הלגו בתחתית */

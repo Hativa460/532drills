@@ -17,7 +17,6 @@ function StartPage({ onStart }) {
             <span>צמ״פ</span>
           </h1>
 
-          {/* כפתור ההתחלה */}
           <button
             className="start-button"
             onClick={onStart}
@@ -28,6 +27,7 @@ function StartPage({ onStart }) {
               alt="התחל לומדה"
             />
           </button>
+
         </div>
 
         <div className="tank-container">

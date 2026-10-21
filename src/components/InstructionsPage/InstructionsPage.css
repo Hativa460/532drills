@@ -48,16 +48,13 @@
   right: 10%;
   width: 80%;
   height: 60%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 16px 12px 14px;
   border-radius: 7px;
   background: #58672b;
   color: #fff;
-
   box-shadow: 7px 7px 4px #0003;
 }
 
@@ -102,60 +99,17 @@
 
 .lego-ready-button {
   position: relative;
-  bottom: 40px;
+  top: 100px; 
   z-index: 2;
-  margin-top: auto;
-
+  margin: 0;
   min-width: 166px;
   min-height: 49px;
-  padding: 5px 10px;
-
-  border: 2px solid #604600;
-  border-radius: 4px;
-  background: linear-gradient(#ffeb55, #f5bd00);
-  color: #302400;
-
-  font-family: "bold-txt";
-  font-size: 23px;
-
-
-  box-shadow:
-    0 3px 0 #9c7100,
-    inset 0 1px 2px #fff9;
-
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  transition: transform 120ms ease, box-shadow 120ms ease;
-}
-
-.lego-studs {
-  position: absolute;
-  top: -7px;
-  right: 3px;
-  left: 3px;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.lego-studs i {
-  width: 11px;
-  height: 6px;
-  border: 1px solid #8c6700;
-  border-radius: 50%;
-  background: #ffdf26;
-}
-
-.lego-button-text {
-  display: block;
-  padding-top: 2px;
+  background-color: transparent;
+  border: none;
 }
 
 .lego-ready-button:active {
   transform: translateY(3px);
-  box-shadow:
-    0 0 0 #9c7100,
-    inset 0 1px 2px #fff9;
 }
 
 .soldier-image {
@@ -163,7 +117,6 @@
   right: 55%;
   bottom: 1%;
   z-index: 3;
-
   width: 37%;
   max-height: 27%;
   object-fit: contain;

@@ -44,17 +44,9 @@ import soldierImage from "/src/assets/media/standing-solider.png"
             onClick={onReady}
             type="button"
           >
-            <span className="lego-studs">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="lego-button-text">
-              אני מוכן
-            </span>
+          <img src="src/assets/media/lego-btn-ready.png" />
           </button>
+
         </div>
 
         <img

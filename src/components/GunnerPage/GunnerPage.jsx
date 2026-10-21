@@ -1,7 +1,6 @@
-
 import { useState } from "react";
-import "./TothanPage.css";
-// 532drills-main\src\components\TothanPage\TothanPage.css
+// import OpenQuestion from './components/OpenQuestion/OpenQuestion.jsx'
+import "./GunnerPage.css";
 
 export default function QuestionPage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);

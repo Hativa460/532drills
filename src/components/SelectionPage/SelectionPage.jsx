@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './SelectionPage.css';
 
-// הגדרת הנתונים עבור כל תפקיד: צבע, טקסט ותמונה מותאמת
 const ROLES = [
   {
     id: 'gunner',
@@ -23,14 +22,12 @@ const ROLES = [
   },
 ];
 
-function SelectionPage() {
-
+function SelectionPage({ onSelection }) {
   const [selectedRole, setSelectedRole] = useState(ROLES[0]);
 
   return (
     <>
       <div className='selection-screen'>
-
         <header className="page-logos">
           <img src="/src/assets/media/logo-right.png" alt="סמל יחידה" />
           <img src="/src/assets/media/logo-left.png" alt="סמל יחידה" />
@@ -39,7 +36,6 @@ function SelectionPage() {
         <h1 className="title">בחר את התפקיד שלך:</h1>
 
         <div className="role-selection-container" dir="rtl">
-
           <div className="bricks-container">
             {ROLES.map((role) => {
               const isSelected = selectedRole.id === role.id;
@@ -49,7 +45,6 @@ function SelectionPage() {
                   className={`lego-brick ${role.colorClass} ${isSelected ? 'selected' : ''}`}
                   onClick={() => setSelectedRole(role)}
                 >
-                  {/* הליטות בחלק העליון של קוביית הלגו */}
                   <div className="lego-studs">
                     <span className="stud"></span>
                     <span className="stud"></span>
@@ -57,7 +52,6 @@ function SelectionPage() {
                     <span className="stud"></span>
                   </div>
                   
-                  {/* גוף הקובייה והטקסט */}
                   <div className="brick-body">
                     <span className="brick-text">{role.title}</span>
                   </div>
@@ -66,18 +60,18 @@ function SelectionPage() {
             })}
           </div>
 
+          {/* כאן אנחנו מעבירים את התפקיד הנוכחי לפונקציה של האב */}
           <button
-            className="start-button"
-            onClick={onSelection}
-            aria-label="התחל לומדה"
+            className="start-button2"
+            onClick={() => onSelection(selectedRole)}
+            aria-label="התחל"
           >
             <img
-              src="/src/assets/media/lego-btn-start.png"
-              alt="התחל לומדה"
+              src="/src/assets/media/lego-btn2.png"
+              alt="התחל"
             />
           </button>
 
-          {/* דמות הלגו המשתנה למטה */}
           <div className="character-container">
             <img
               src={selectedRole.image}
@@ -89,21 +83,6 @@ function SelectionPage() {
       </div>
     </>
   );
-
-
-  
-  // return (
-  //   <main className="page-wrapper" dir="rtl">
-  //     <section className="learning-screen next-screen">
-  //       <h1>בחר את התפקיד שלך</h1>
-
-  //       <button id="btn-blue"></button>
-  //       <p>
-  //        אופציות
-  //       </p>
-  //     </section>
-  //   </main>
-  // );
 }
 
 export default SelectionPage;

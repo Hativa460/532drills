@@ -61,15 +61,12 @@
 /* כפתור הלגו */
 .start-button {
   display: block;
-  width: clamp(170px, 53vw, 200px);
-
+  width: clamp(170px, 73vw, 200px);
   margin-top: clamp(38px, 7vh, 58px);
   padding: 0;
-
   border: none;
   background: transparent;
   cursor: pointer;
-
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition: transform 160ms ease;
@@ -82,7 +79,7 @@
 }
 
 .start-button:active {
-  /* transform: scale(0.96); */
+  transform: scale(0.96);
   transform: translateY(4px);
 }
 
