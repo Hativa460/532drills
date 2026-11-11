@@ -1,270 +1,89 @@
-// import React, { useState, useEffect, useMemo } from "react";
-// import json from "//.text.json"; 
-// import "./OpenQuestion.css"; 
+import React, { useState } from "react";
+import "./OpenQuestion.css";
 
-// export default function OpenQuestion({ questionNum, onNextQuestion }) {
-//   const [userAnswer, setUserAnswer] = useState("");
-//   const [submitted, setSubmitted] = useState(false);
-//   const [showPopup, setShowPopup] = useState(false);
-//   const [canContinue, setCanContinue] = useState(false);
+export default function OpenQuestion({ questionData, onPointsUpdated, onNextQuestion }) {
+  const [userAnswer, setUserAnswer] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false); // פתיחת ה-Overlay
 
-//   useEffect(() => {
-//     resetQuestion();
-//   }, [questionNum]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!userAnswer.trim()) {
+      alert("נא להזין תשובה לפני שממשיכים!");
+      return;
+    }
 
-//   const currentQuestion = useMemo(() => {
-//     return json.openQuestions[questionNum];
-//   }, [questionNum]);
+    setIsSubmitted(true);
 
-//   const title = currentQuestion ? currentQuestion.title : "";
-//   const subtitle = currentQuestion ? currentQuestion.subtitle : "";
-//   const correctAnswer = currentQuestion ? currentQuestion.correct : "";
-//   const keywords = currentQuestion ? currentQuestion.keywords : [];
+    const correct = userAnswer.trim() === questionData.correct.trim();
+    setIsCorrect(correct);
 
-//   const normalize = (text) => {
-//     return text
-//       .toLowerCase()
-//       .replace(/[.,!?()]/g, "")
-//       .replace(/\s+/g, " ")
-//       .trim();
-//   };
+    const points = correct ? 10 : 0;
+    onPointsUpdated(points);
 
-//   const submitAnswer = () => {
-//     if (!userAnswer.trim()) return;
+    // מציג את ה-Overlay מיד אחרי ההגשה (או בלחיצה)
+    setShowOverlay(true);
+  };
 
-//     const answer = normalize(userAnswer);
-//     let found = 0;
+  const closeOverlayAndNext = () => {
+    setShowOverlay(false);
+    onNextQuestion();
+  };
 
-//     keywords.forEach((group) => {
-//       const groupKeywords = Array.isArray(group) ? group : [group];
+  return (
+    <div id="open-question">
+      <div className="question-container">
+        
+        <div className="question-header">
+          <h2 className="question-title">{questionData.title}</h2>
+          <p className="question-subtitle">{questionData.subtitle}</p>
+        </div>
 
-//       const exists = groupKeywords.some((keyword) =>
-//         answer.includes(normalize(keyword))
-//       );
+        {!isSubmitted ? (
+          <form onSubmit={handleSubmit} className="open-form">
+            <textarea
+              className="answer-textarea"
+              value={userAnswer}
+              onChange={(e) => setUserAnswer(e.target.value)}
+              placeholder="הקלד/י את התשובה כאן..."
+              rows="5"
+            />
+            <button type="submit" className="submit-ans-btn">
+              הגש תשובה
+            </button>
+          </form>
+        ) : (
+          <div className="feedback-container">
+            <div className={`result-box ${isCorrect ? "correct-ans" : "wrong-ans"}`}>
+              {isCorrect ? "כל הכבוד! צדקת 🎉" : "טעית בתשובה"}
+            </div>
 
-//       if (exists) {
-//         found++;
-//       }
-//     });
+            <button className="move-on" onClick={() => setShowOverlay(true)}>
+              הצג תשובה נכונה
+            </button>
 
-//     const ratio = keywords.length > 0 ? found / keywords.length : 0;
-//     const correct = ratio >= 0.75;
+            <button className="move-on" onClick={onNextQuestion} style={{ marginTop: "10px" }}>
+              המשך לשאלה הבאה -&gt;
+            </button>
+          </div>
+        )}
 
-//     setIsCorrect(correct);
-//     setSubmitted(true);
-//     setShowPopup(true);
-//   };
+      </div>
 
-//   const closePopup = () => {
-//     setShowPopup(false);
-//     setCanContinue(true);
-//   };
-
-//   const handleMoveOn = () => {
-//     setTimeout(() => {
-//       onNextQuestion();
-//     }, 180);
-//   };
-
-//   const resetQuestion = () => {
-//     setUserAnswer("");
-//     setSubmitted(false);
-//     setIsCorrect(false);
-//     setShowPopup(false);
-//     setCanContinue(false);
-//   };
-
-//   return (
-//     <div id="open-question">
-//       <div className="question-container">
-//         <div className="question-header">
-//           <h2 className="question-title">{title}</h2>
-//         </div>
-
-//         <div className="areacontainr">
-//           <p className="question-subtitle">{subtitle}</p>
-//           <textarea
-//             value={userAnswer}
-//             onChange={(e) => setUserAnswer(e.target.value)}
-//             className="answer-box"
-//             placeholder="כתבו את תשובתכם כאן..."
-//             disabled={submitted}
-//           ></textarea>
-//         </div>
-
-//         <button
-//           className="submit-btn"
-//           onClick={submitAnswer}
-//           disabled={submitted || userAnswer.trim() === ""}
-//         >
-//           הגש תשובה
-//         </button>
-
-//         {submitted && (
-//           <div className={`result-message ${isCorrect ? "correct" : "wrong"}`}>
-//             {isCorrect ? <span>✔ תשובה נכונה!</span> : <span>✖ התשובה אינה מלאה.</span>}
-//           </div>
-//         )}
-
-//         {canContinue && (
-//           <button className="move-on" onClick={handleMoveOn}>
-//             המשך
-//           </button>
-//         )}
-
-//         {/* Popup */}
-//         {showPopup && (
-//           <div className="popup-overlay">
-//             <div className="popup">
-//               <button className="close-btn" onClick={closePopup}>
-//                 ✕
-//               </button>
-
-//               {isCorrect === false && <h3>בואו נקרא את התשובה המדויקת </h3>}
-//               {isCorrect === true && <h3> נכון! בכל מקרה שתדעו-</h3>}
-//               <p>{correctAnswer}</p>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default function OpenQuestion({ questionNum, onPointsUpdated, onNextQuestion }) {
-//   const [userAnswer, setUserAnswer] = useState("");
-//   const [submitted, setSubmitted] = useState(false);
-//   const [isCorrect, setIsCorrect] = useState(false);
-//   const [showPopup, setShowPopup] = useState(false);
-//   const [canContinue, setCanContinue] = useState(false);
-//   const [earnedPoints, setEarnedPoints] = useState(0);
-
-//   // מנגנון ה-watch של Vue עבור שינוי מספר שאלה
-//   useEffect(() => {
-//     resetQuestion();
-//   }, [questionNum]);
-
-//   // Computed Properties ב-React באמצעות useMemo
-//   const currentQuestion = useMemo(() => {
-//     return json.openQuestions[questionNum];
-//   }, [questionNum]);
-
-//   const title = currentQuestion ? currentQuestion.title : "";
-//   const subtitle = currentQuestion ? currentQuestion.subtitle : "";
-//   const correctAnswer = currentQuestion ? currentQuestion.correct : "";
-//   const keywords = currentQuestion ? currentQuestion.keywords : [];
-
-//   const normalize = (text) => {
-//     return text
-//       .toLowerCase()
-//       .replace(/[.,!?()]/g, "")
-//       .replace(/\s+/g, " ")
-//       .trim();
-//   };
-
-//   const submitAnswer = () => {
-//     if (!userAnswer.trim()) return;
-
-//     const answer = normalize(userAnswer);
-//     let found = 0;
-
-//     keywords.forEach((group) => {
-//       const groupKeywords = Array.isArray(group) ? group : [group];
-
-//       const exists = groupKeywords.some((keyword) =>
-//         answer.includes(normalize(keyword))
-//       );
-
-//       if (exists) {
-//         found++;
-//       }
-//     });
-
-//     const ratio = keywords.length > 0 ? found / keywords.length : 0;
-//     const correct = ratio >= 0.75;
-//     const points = correct ? 10 : 0;
-
-//     setIsCorrect(correct);
-//     setEarnedPoints(points);
-//     setSubmitted(true);
-//     setShowPopup(true);
-//   };
-
-//   const closePopup = () => {
-//     setShowPopup(false);
-//     setCanContinue(true);
-//   };
-
-//   const handleMoveOn = () => {
-//     onPointsUpdated(earnedPoints);
-
-//     setTimeout(() => {
-//       onNextQuestion();
-//     }, 180);
-//   };
-
-//   const resetQuestion = () => {
-//     setUserAnswer("");
-//     setSubmitted(false);
-//     setIsCorrect(false);
-//     setShowPopup(false);
-//     setCanContinue(false);
-//     setEarnedPoints(0);
-//   };
-
-//   return (
-//     <div id="open-question">
-//       <div className="question-container">
-//         <div className="question-header">
-//           <h2 className="question-title">{title}</h2>
-//         </div>
-
-//         <div className="areacontainr">
-//           <p className="question-subtitle">{subtitle}</p>
-//           <textarea
-//             value={userAnswer}
-//             onChange={(e) => setUserAnswer(e.target.value)}
-//             className="answer-box"
-//             placeholder="כתבו את תשובתכם כאן..."
-//             disabled={submitted}
-//           ></textarea>
-//         </div>
-
-//         <button
-//           className="submit-btn"
-//           onClick={submitAnswer}
-//           disabled={submitted || userAnswer.trim() === ""}
-//         >
-//           הגש תשובה
-//         </button>
-
-//         {submitted && (
-//           <div className={`result-message ${isCorrect ? "correct" : "wrong"}`}>
-//             {isCorrect ? <span>✔ תשובה נכונה!</span> : <span>✖ התשובה אינה מלאה.</span>}
-//           </div>
-//         )}
-
-//         {canContinue && (
-//           <button className="move-on" onClick={handleMoveOn}>
-//             המשך
-//           </button>
-//         )}
-
-//         {/* Popup */}
-//         {showPopup && (
-//           <div className="popup-overlay">
-//             <div className="popup">
-//               <button className="close-btn" onClick={closePopup}>
-//                 ✕
-//               </button>
-
-//               {isCorrect === false && <h3>בואו נקרא את התשובה המדויקת </h3>}
-//               {isCorrect === true && <h3> נכון! בכל מקרה שתדעו-</h3>}
-//               <p>{correctAnswer}</p>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
+      {/* --- ה-Overlay המלא שמחשיך את כל המסך --- */}
+      {showOverlay && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-btn" onClick={closeOverlayAndNext}>×</button>
+            <h3>התשובה הנכונה לשאלה {questionData.qNum}:</h3>
+            <p>{questionData.correct}</p>
+            <button className="modal-next-btn" onClick={closeOverlayAndNext}>
+              המשך הלאה
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

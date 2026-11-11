@@ -1,5 +1,5 @@
 #open-question {
-  margin-top:15%;
+  margin-top: 5%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -13,236 +13,156 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .question-header {
   text-align: center;
-  /* margin-bottom: 20px; */
-  /* height: 180px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
+  margin-bottom: 20px;
 }
 
 .question-title {
   color: #5c2d13;
   font-size: 28px;
-  /* font-weight: bold; */
+  font-family: RubikDistressed, sans-serif;
   margin: 0 0 10px 0;
-   font-family: RubikDistressed;
-       font-weight: 300;
 }
 
 .question-subtitle {
   color: #6d3b1e;
   font-size: 20px;
+  text-align: center;
   line-height: 1.4;
   margin: 0;
-  font-weight: 500;
-  text-align: center;
 }
 
-.areacontainr {
-    /* margin-top: 10%; */
-    display: grid;
-    /* grid-template-columns: repeat(2, 1fr); */
-    gap: 15px;
-    width: 80%;
-    margin-bottom: 30px;
-    background-color: #ffffff33;
-    border: #ceb394 solid 2px;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 12px 35px rgba(74, 50, 31, 0.45);
+.open-form, .feedback-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+  background-color: #ffffff33;
+  border: #ceb394 solid 2px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(74, 50, 31, 0.45);
+  box-sizing: border-box;
 }
 
-/* תיבת התשובה */
-
-.answer-box {
-/* margin-top: 10%; */
-    width: 100%;
-    min-height: 180px;
-    resize: none;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    background: #99a8977d;
-    color: white;
-    font-size: 15px;
-    font-family: inherit;
-    padding: 18px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-box-shadow: 0 4px 10px rgba(92, 45, 19, .15);
-     box-shadow: 0 4px 10px rgba(92, 45, 19, .15);
-
+.answer-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ceb394;
+  font-size: 16px;
+  resize: vertical;
+  box-sizing: border-box;
+  outline: none;
 }
 
-.answer-box::placeholder {
-
-  color: rgba(255,255,255,.8);
-
-}
-
-/* כפתור הגשה */
-
-.submit-btn {
-
-    /* margin-top: 25px; */
-    background-color: #687965;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-    border-radius: 16px;
-    padding: 15px 30px;
-    cursor: pointer;
-    -webkit-transition: .2s;
-    transition: .2s;
-}
-
-.submit-btn:hover:not(:disabled){
-
-  transform: translateY(-2px);
-
-}
-
-.submit-btn:disabled{
-
-  opacity:.5;
-
-  cursor:not-allowed;
-
-}
-
-/* הודעת הצלחה / כישלון */
-
-.result-message{
-
-  margin-top:20px;
-
-  font-size:22px;
-
-  font-weight:bold;
-
-}
-
-.correct{
-
-  color:#2e7d32;
-
-}
-
-.wrong{
-
-  color:#c62828;
-
-}
-
-/* כפתור המשך */
-
-.move-on {
-
+.submit-ans-btn, .move-on {
   background-color: #5c7d57;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   border: none;
-  border-radius: 10px;
-  padding: 15px 30px;
+  border-radius: 12px;
+  padding: 12px 30px;
   cursor: pointer;
-
-  box-shadow: 0 4px 10px rgba(0,0,0,.15);
-
-  transition: transform .18s ease,
-              background-color .18s ease;
-
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  align-self: center;
 }
 
-.move-on:active{
-
-  transform:scale(.92);
-
-  background:#8f5d3e;
-
+.submit-ans-btn:hover, .move-on:hover {
+  background-color: #4c6647;
 }
 
-/* Popup */
-
-.popup-overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:rgba(0,0,0,.45);
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  z-index:999;
-
+.result-box {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  box-sizing: border-box;
 }
 
-.popup{
-  width:75%;
-  max-width:430px;
-  background:white;
-  border-radius:25px;
-  padding:30px;
-  text-align:center;
-  position:relative;
-  animation:popup .25s ease;
+.result-box.correct-ans {
+  background-color: rgb(179, 241, 160);
+  color: #1b5e20;
 }
 
-.popup h3{
-  color:#5c2d13;
-  margin-bottom:20px;
-  font-size:28px;
+.result-box.wrong-ans {
+  background-color: rgb(247, 83, 83);
+  color: white;
 }
 
-.popup p{
-  color:#444;
-  font-size:22px;
-  line-height:1.6;
+/* עיצוב ה-Overlay שמחשיך את כל המסך מאחור */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* מסך חשוך שקוף */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-.close-btn{
-  position:absolute;
-  top:15px;
-  left:15px;
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  border:none;
-  background:#b97d57;
-  color:white;
-  font-size:22px;
-  cursor:pointer;
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  direction: rtl;
 }
 
-.close-btn:hover{
-  background:#8f5d3e;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* בצד שמאל כי זה עברית */
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
 }
 
-@keyframes popup{
+.close-btn:hover {
+  color: #b71c1c;
+}
 
-  from{
-    transform:scale(.8);
-    opacity:0;
+.modal-content h3 {
+  margin-top: 0;
+  color: #5c2d13;
+}
 
-  }
+.modal-content p {
+  color: #444;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 15px 0 25px 0;
+}
 
-  to{
-    transform:scale(1);
-    opacity:1;
-  }
+.modal-next-btn {
+  background-color: #5c7d57;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
+.modal-next-btn:hover {
+  background-color: #4c6647;
 }

@@ -1,0 +1,118 @@
+#american {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  direction: rtl;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.question-header {
+  text-align: center;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.question-title {
+  color: #5c2d13;
+  font-size: 28px;
+  font-family: RubikDistressed, sans-serif;
+  margin: 0 0 10px 0;
+  font-weight: 300;
+}
+
+.question-subtitle {
+  color: #6d3b1e;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 500;
+}
+
+.answers-grid {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 30px;
+  background-color: #ffffff33;
+  border: #ceb394 solid 2px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(74, 50, 31, 0.45);
+}
+
+.answer-card {
+  background-color: #99a897bd;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  min-height: 65px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(92, 45, 19, 0.15);
+  transition: transform .2s ease,
+              box-shadow .2s ease,
+              background-color .2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.answer-card:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(92, 45, 19, 0.25);
+}
+
+.answer-card:disabled {
+  cursor: not-allowed;
+}
+
+.answer-card.correct-ans {
+  background-color: rgb(179, 241, 160) !important;
+  color: black !important;
+  border-color: #1b5e20 !important;
+}
+
+.answer-card.wrong-ans {
+  background-color: rgb(247, 83, 83) !important;
+  color: white !important;
+  border-color: #b71c1c !important;
+}
+
+.move-on {
+  background-color: #5c7d57;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: transform .18s ease,
+              background-color .18s ease,
+              box-shadow .18s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.move-on.pressed {
+  transform: scale(.92);
+  background-color: #8f5d3e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
